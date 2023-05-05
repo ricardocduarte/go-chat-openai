@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"os"
 	"strings"
 
 	"chat-openai/interfaces"
@@ -94,4 +95,10 @@ func (c *Client) Call(ctx context.Context, method string, url string, body io.Re
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	return resp, err
+}
+
+func GetClient() *Client {
+	apiKey := os.Getenv("API_KEY")
+	organization := os.Getenv("API_ORG")
+	return NewClient(apiKey, organization)
 }
