@@ -4,6 +4,7 @@ import (
 	"chat-openai/handlers"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/julienschmidt/httprouter"
@@ -11,9 +12,13 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	if os.Getenv("APP_ENV") != "production" {
+		log.Println(os.Getenv("APP_ENV"))
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
+
 	}
 
 	router := httprouter.New()
