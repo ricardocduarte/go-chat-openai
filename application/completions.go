@@ -25,7 +25,8 @@ func (c *Client) CreateCompletions(ctx context.Context, r models.CreateCompletio
 
 func GetCompletions(client *Client, content string) (response *models.CompletionsResponse, err error) {
 	r := models.CreateCompletionsRequest{
-		Model: "gpt-3.5-turbo",
+		//Model: "gpt-3.5-turbo",
+		Model: "gpt-4",
 		Messages: []models.Message{
 			{
 				Role:    "user",
